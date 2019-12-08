@@ -13,16 +13,20 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Etudiant implements Serializable {
 
 	@Id
@@ -33,26 +37,29 @@ public class Etudiant implements Serializable {
 	private String adresse;
 	private String num;
 	private Date dateDenaissace;
-	@OneToMany(mappedBy = "etudiant",fetch = FetchType.LAZY)
+	private int nombreDabsence;
+	@ManyToMany
 	private List<Professeur> professeur;
 	@OneToOne
 	private Filiere filiere;
-	@OneToMany(mappedBy = "etudiant",fetch = FetchType.LAZY)
+	@ManyToMany
 	private List<Salle> salle;
-	public Etudiant(String nom, String prenom, String adresse, String num, Date dateDenaissace,
-			List<Professeur> professeur, Filiere filiere, List<Salle> salle) {
+	@OneToOne
+	private SurveillantGeneral surveillant;
+
+	public Etudiant(String nom, String prenom, String adresse, String num, Date dateDenaissace, int nombreDabsence,
+			List<Professeur> professeur, Filiere filiere, List<Salle> salle, SurveillantGeneral surveillant) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
 		this.num = num;
 		this.dateDenaissace = dateDenaissace;
+		this.nombreDabsence = nombreDabsence;
 		this.professeur = professeur;
 		this.filiere = filiere;
 		this.salle = salle;
+		this.surveillant = surveillant;
 	}
-	
-	
-	
-	
+
 }

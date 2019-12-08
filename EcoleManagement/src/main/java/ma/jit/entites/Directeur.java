@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Directeur extends Employe implements Serializable {
-	
-	@OneToMany(mappedBy = "directeur" , fetch = FetchType.LAZY)
+
+	@OneToMany(mappedBy = "directeur", fetch = FetchType.LAZY)
 	private List<SurveillantGeneral> surveillant;
 
 	public Directeur(@NotNull String nom, @NotNull String prenom, @NotNull String cin, @NotNull int tel,
@@ -27,14 +27,5 @@ public class Directeur extends Employe implements Serializable {
 		super(nom, prenom, cin, tel, email, adresse, salaire, sexe);
 		this.surveillant = surveillant;
 	}
-
-
-	
-	
-
-	
-	
-	
-	
 
 }

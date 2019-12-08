@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public abstract  class Employe {
+public abstract class Employe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
@@ -41,6 +41,7 @@ public abstract  class Employe {
 	protected double salaire;
 	@NotNull
 	protected String sexe;
+
 	public Employe(@NotNull String nom, @NotNull String prenom, @NotNull String cin, @NotNull int tel,
 			@NotNull String email, @NotNull String adresse, @NotNull double salaire, @NotNull String sexe) {
 		super();
@@ -53,14 +54,5 @@ public abstract  class Employe {
 		this.salaire = salaire;
 		this.sexe = sexe;
 	}
-	
-	
-
-	
-	
-	
-
-	
-	
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
@@ -12,32 +13,30 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Professeur extends Employe implements Serializable {
-	
+
 	@OneToOne
-	private Filiere filiere;
-	@OneToMany(mappedBy = "professeur", fetch = FetchType.LAZY)
+	private Matiere matiere;
+	@ManyToMany
 	private List<Salle> salle;
-	
-	
+	@ManyToMany
+	private List<Etudiant> etudiant;
+	@OneToOne
+	private SurveillantGeneral surveillant;
 	public Professeur(@NotNull String nom, @NotNull String prenom, @NotNull String cin, @NotNull int tel,
 			@NotNull String email, @NotNull String adresse, @NotNull double salaire, @NotNull String sexe,
-			Filiere filiere, List<Salle> salle) {
+			Matiere matiere, List<Salle> salle, List<Etudiant> etudiant, SurveillantGeneral surveillant) {
 		super(nom, prenom, cin, tel, email, adresse, salaire, sexe);
-		this.filiere = filiere;
+		this.matiere = matiere;
 		this.salle = salle;
+		this.etudiant = etudiant;
+		this.surveillant = surveillant;
 	}
-	
-	
 
-	
-	
-
-	
-	
 
 }
